@@ -6,7 +6,6 @@ import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../Providers/AuthContext";
 import toast from "react-hot-toast";
 import passwordValidation from "../Utility/passwordValidation";
-import axios from "axios";
 import api from "../Utility/axios";
 
 const Login = () => {
@@ -30,27 +29,24 @@ const Login = () => {
       );
     }
 
-    try {
-      api
-        .post("/auth/login", {
-          email,
-          password,
-        })
-        .then((res) => {
-          const token = res.data.token;
-          if (token) {
-            localStorage.setItem("token", token);
-            setUser(res.data.user);
-            setLoading(false);
-          } else {
-            alert("No token received");
-          }
-          Navigate(currentLocation, { replace: true });
-        });
-    } catch (error) {
-      const errorMessage = error.message;
-      toast.error(errorMessage);
-    }
+    api
+      .post("/auth/login", {
+        email,
+        password,
+      })
+      .then((res) => {
+        const token = res.data.token;
+        if (token) {
+          localStorage.setItem("token", token);
+          setUser(res.data.user);
+          setLoading(false);
+        } else {
+          toast.error("No token received");
+        }
+        Navigate(currentLocation, { replace: true });
+      }).catch ((error) => {
+        toast.error("Credentials don't match");
+      });
   };
   const handleGoogleSignIn = async () => {
     try {
