@@ -2,7 +2,7 @@ import axios from "axios";
 
 const logoutUser = () => {
   localStorage.removeItem("token");
-  window.location.href = "/login";
+  window.location.href = "/auth/login";
 };
 
 const api = axios.create({
