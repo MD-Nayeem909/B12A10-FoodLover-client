@@ -6,7 +6,7 @@ const logoutUser = () => {
 };
 
 const api = axios.create({
-  baseURL: "https://food-lover-api-server.vercel.app",
+  baseURL: "https://b12-a10-food-lover-server.vercel.app",
   timeout: 5000,
 });
 

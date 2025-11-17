@@ -13,7 +13,7 @@ const AllReviews = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   const { data, loading } = useService(
-    "https://food-lover-api-server.vercel.app/api/reviews"
+    "https://b12-a10-food-lover-server.vercel.app/api/reviews"
   );
   const allReviews =
     (data.data && data.data.sort(() => Math.random() - 0.5)) || [];
