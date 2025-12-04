@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import Container from "../Utility/Container";
-import { Heart } from "lucide-react";
+import { Heart, LogIn, LogOut, UserRoundPlus } from "lucide-react";
 import { useTheme } from "../Providers/ThemeProvider";
 import { useAuth } from "../Providers/AuthContext";
 
@@ -36,6 +36,26 @@ const Navbar = () => {
       <NavItem to="/favorites">
         <Heart size={18} className="text-accent" /> Favorites
       </NavItem>
+      {user ? (
+        <NavItem to="/auth/register" className="md:hidden">
+          {" "}
+          <LogOut size={18} className="text-accent" />
+          Logout
+        </NavItem>
+      ) : (
+        <div className="md:hidden">
+          <NavItem to="/auth/login">
+            {" "}
+            <LogIn size={18} className="text-accent" />
+            Login
+          </NavItem>
+          <NavItem to="/auth/register">
+            {" "}
+            <UserRoundPlus size={18} className="text-accent" />
+            Register
+          </NavItem>
+        </div>
+      )}
     </>
   );
 
