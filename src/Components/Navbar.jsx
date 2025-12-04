@@ -37,9 +37,9 @@ const Navbar = () => {
         <Heart size={18} className="text-accent" /> Favorites
       </NavItem>
       {user ? (
-        <NavItem to="/auth/register" className="md:hidden">
+        <NavItem className="md:hidden">
           {" "}
-          <LogOut size={18} className="text-accent" />
+          <LogOut size={18} className="text-accent" onClick={handleLogout} />
           Logout
         </NavItem>
       ) : (

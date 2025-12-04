@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import {  useState } from "react";
 import Container from "../Utility/Container";
 import { NavLink, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../Providers/AuthContext";
-import axios from "axios";
 import api from "../Utility/axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { createUser, googleSignIn, updateUserData } = useAuth();
@@ -54,8 +54,37 @@ const Register = () => {
           password,
           photoURL,
         })
-        .then((response) => {
-          Navigate(currentLocation, { replace: true });
+
+        .then((res) => {
+          api
+            .post("/auth/login", {
+              email,
+              password,
+            })
+            .then((res) => {
+              const token = res.data.token;
+              if (token) {
+                localStorage.setItem("token", token);
+                setUser(res.data.user);
+                setLoading(false);
+              } else {
+                toast.error("No token received");
+              }
+              Navigate(currentLocation, { replace: true });
+            })
+            .catch((error) => {
+              toast.error("Credentials don't match");
+            });
+
+          // const token = res.data.token;
+          // if (token) {
+          //   localStorage.setItem("token", token);
+          //   setUser(res.data.user);
+          //   setLoading(false);
+          // } else {
+          //   toast.error("No token received");
+          // // }
+          // Navigate(currentLocation, { replace: true });
         })
         .catch((error) => {
           console.error(error);
