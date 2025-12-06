@@ -12,6 +12,7 @@ import MyReviews from '../Pages/MyReviews';
 import CreateReview from '../Pages/CreateReview';
 import EditReview from '../Pages/EditReview';
 import PageNotFound from '../ErrorPage/PageNotFound';
+import Loading from '../Utility/Loading';
 
 const authLoader = () => {
 	if (!localStorage.getItem('token')) {
@@ -25,7 +26,7 @@ const Router = createBrowserRouter([
 		path: '/',
 		element: <HomeLayout />,
 		errorElement: <PageNotFound />,
-		hydrateFallbackElement: <div>Loading...</div>,
+		hydrateFallbackElement: <Loading />,
 		children: [
 			{
 				index: true,
@@ -63,8 +64,8 @@ const Router = createBrowserRouter([
 	{
 		path: '/auth',
 		element: <AuthLayout />,
-		errorElement: <div>Error occurred!</div>,
-		hydrateFallbackElement: <div>Loading...</div>,
+		errorElement: <PageNotFound />,
+		hydrateFallbackElement: <Loading />,
 		loader: ({ request }) => {
 			if (localStorage.getItem('token')) {
 				throw redirect('/');

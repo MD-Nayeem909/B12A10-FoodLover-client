@@ -1,6 +1,6 @@
-import {  useState } from "react";
+import { useState } from "react";
 import Container from "../Utility/Container";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, useLocation } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../Providers/AuthContext";
@@ -8,101 +8,69 @@ import api from "../Utility/axios";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, googleSignIn, updateUserData } = useAuth();
-  const Navigate = useNavigate();
+  const { googleSignIn, setLoading, setUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [photoURL, setPhotoURL] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [form, setForm] = useState({
+    username: "",
+    photoURL: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [show, setShow] = useState({
+    password: false,
+    confirm: false,
+  });
 
   const currentLocation = location.state?.from?.pathname || "/";
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePhotoURLChange = (e) => {
-    setPhotoURL(e.target.value);
-  };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
+  // Generic input handler
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Password doesn't match");
-      return;
+
+    if (form.password !== form.confirmPassword) {
+      return toast.error("Passwords do not match");
     }
+
     try {
-      api
-        .post("/auth/signup", {
-          username,
-          email,
-          password,
-          photoURL,
-        })
+      await api.post("/auth/signup", form);
+      const res = await api.post("/auth/login", {
+        email: form.email,
+        password: form.password,
+      });
 
-        .then((res) => {
-          api
-            .post("/auth/login", {
-              email,
-              password,
-            })
-            .then((res) => {
-              const token = res.data.token;
-              if (token) {
-                localStorage.setItem("token", token);
-                setUser(res.data.user);
-                setLoading(false);
-              } else {
-                toast.error("No token received");
-              }
-              Navigate(currentLocation, { replace: true });
-            })
-            .catch((error) => {
-              toast.error("Credentials don't match");
-            });
+      const token = res.data.token;
+      if (token) {
+        localStorage.setItem("token", token);
+        setUser(res.data.user);
+      } else toast.error("No token received");
 
-          // const token = res.data.token;
-          // if (token) {
-          //   localStorage.setItem("token", token);
-          //   setUser(res.data.user);
-          //   setLoading(false);
-          // } else {
-          //   toast.error("No token received");
-          // // }
-          // Navigate(currentLocation, { replace: true });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      console.error(error.message);
+      navigate(currentLocation, { replace: true });
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
+
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-    } catch (error) {
-      console.error(error.message);
+    } catch (err) {
+      toast.error(err.message);
     }
   };
+
   return (
     <Container>
-      <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl p-4 mx-auto">
+      <div className="card bg-base-100 w-full max-w-md shadow-2xl p-4 mx-auto">
         <div className="text-center">
           <h2 className="text-2xl font-bold mt-6 mb-3">Register Now!</h2>
           <span>
@@ -112,86 +80,103 @@ const Register = () => {
             </NavLink>
           </span>
         </div>
-        <form onSubmit={handleRegister} className="card-body ">
+
+        <form onSubmit={handleRegister} className="card-body">
           <fieldset className="fieldset">
+            {/* Name */}
             <div>
               <label className="label mb-2">Name</label>
               <input
                 type="text"
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 bg-base-200"
+                name="username"
+                className="input w-full bg-base-200"
                 placeholder="Your Name"
-                onChange={handleUsernameChange}
+                onChange={handleChange}
+                value={form.username}
                 required
-                value={username}
               />
             </div>
+
+            {/* Photo URL */}
             <div>
               <label className="label mb-2">Image-URL</label>
               <input
                 type="text"
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 bg-base-200"
-                placeholder="Image URL...."
-                onChange={handlePhotoURLChange}
-                value={photoURL}
+                name="photoURL"
+                className="input w-full bg-base-200"
+                placeholder="Image URL..."
+                onChange={handleChange}
+                value={form.photoURL}
               />
             </div>
+
+            {/* Email */}
             <div>
               <label className="label mb-2">Email</label>
               <input
                 type="email"
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 bg-base-200"
-                placeholder="enter your email"
-                onChange={handleEmailChange}
+                name="email"
+                className="input w-full bg-base-200"
+                placeholder="Enter your email"
+                onChange={handleChange}
+                value={form.email}
                 required
-                value={email}
               />
             </div>
+
+            {/* Password */}
             <div className="relative">
               <label className="label mb-2">Password</label>
               <input
-                type={showPassword ? "text" : "password"}
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 bg-base-200"
+                type={show.password ? "text" : "password"}
+                name="password"
+                className="input w-full bg-base-200"
                 placeholder="Enter your password"
-                onChange={handlePasswordChange}
+                onChange={handleChange}
+                value={form.password}
                 required
-                value={password}
               />
               <button
                 type="button"
-                className="absolute right-3 top-9 text-gray-500 hover:text-gray-700 z-1"
-                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-9"
+                onClick={() => setShow({ ...show, password: !show.password })}
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {show.password ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
+
+            {/* Confirm Password */}
             <div className="relative">
               <label className="label mb-2">Confirm Password</label>
               <input
-                type={showConfirmPassword ? "text" : "password"}
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 bg-base-200"
-                placeholder="Enter your password"
-                onChange={handleConfirmPasswordChange}
+                type={show.confirm ? "text" : "password"}
+                name="confirmPassword"
+                className="input w-full bg-base-200"
+                placeholder="Confirm your password"
+                onChange={handleChange}
+                value={form.confirmPassword}
                 required
-                value={confirmPassword}
               />
               <button
                 type="button"
-                className="absolute right-3 top-9 text-gray-500 hover:text-gray-700 z-1"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-9"
+                onClick={() => setShow({ ...show, confirm: !show.confirm })}
               >
-                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {show.confirm ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
+
             <button className="btn btn-primary mt-4">Register</button>
           </fieldset>
+
           <div className="flex items-center gap-2 mt-4">
             <span className="w-[45%] h-px bg-gray-200"></span>
             <span className="font-semibold">OR</span>
             <span className="w-[45%] h-px bg-gray-200"></span>
           </div>
+
           <button onClick={handleGoogleSignIn} className="btn mt-4">
-            <FcGoogle size={25} />
-            Sign In With Google
+            <FcGoogle size={25} /> Sign In With Google
           </button>
         </form>
       </div>

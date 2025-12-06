@@ -6,7 +6,7 @@ const logoutUser = () => {
 };
 
 const api = axios.create({
-  baseURL: "https://b12-a10-food-lover-server.vercel.app",
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 5000,
 });
 

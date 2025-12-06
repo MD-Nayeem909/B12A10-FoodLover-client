@@ -8,7 +8,7 @@ import { useAuth } from "../Providers/AuthContext";
 const RecentReviews = () => {
   const { user } = useAuth();
   const { data, loading } = useService(
-    "https://b12-a10-food-lover-server.vercel.app/api/reviews"
+    `${import.meta.env.VITE_API_URL}/api/reviews`
   );
 
   const reviews =

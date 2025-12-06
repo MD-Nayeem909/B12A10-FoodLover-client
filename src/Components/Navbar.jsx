@@ -1,7 +1,6 @@
-import React from "react";
 import { Link, NavLink } from "react-router";
 import Container from "../Utility/Container";
-import { Heart, LogIn, LogOut, UserRoundPlus } from "lucide-react";
+import { Heart, LogIn, UserRoundPlus } from "lucide-react";
 import { useTheme } from "../Providers/ThemeProvider";
 import { useAuth } from "../Providers/AuthContext";
 
@@ -36,13 +35,7 @@ const Navbar = () => {
       <NavItem to="/favorites">
         <Heart size={18} className="text-accent" /> Favorites
       </NavItem>
-      {user ? (
-        <NavItem className="md:hidden">
-          {" "}
-          <LogOut size={18} className="text-accent" onClick={handleLogout} />
-          Logout
-        </NavItem>
-      ) : (
+      {!user && (
         <div className="md:hidden">
           <NavItem to="/auth/login">
             {" "}
