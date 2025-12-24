@@ -49,15 +49,15 @@ const CreateReview = () => {
 
   return (
     <Container>
-      <div className="my-20">
-        <div className="max-w-3xl mx-auto">
+      <div className="my-10">
+        <div className="max-w-3xl mx-auto px-2 md:px-0">
           <Link
             to="/"
             className="font-medium text-xl flex items-center gap-2 mb-4"
           >
             <ArrowLeft /> Back to Reviews
           </Link>
-          <h2 className="text-5xl font-bold mb-4">
+          <h2 className="text-4xl font-bold mb-4">
             Share Your Food Experience
           </h2>
           <p className="text-accent mb-8">
@@ -66,7 +66,7 @@ const CreateReview = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="max-w-3xl mx-auto mt-10 bg-base-100 gap-7 p-8 rounded-lg shadow-xl flex flex-col"
+          className="max-w-3xl mx-auto  bg-base-100 gap-7 py-8 px-3 md:px-8 rounded-lg shadow-lg flex flex-col"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
