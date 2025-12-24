@@ -6,14 +6,13 @@ import DiscoverFlavors from "../Components/DiscoverFlavors";
 import Stat from "../Components/Stat";
 
 const Home = () => {
-  
   return (
     <div>
       <Container>
-        <Hero></Hero>
-        <RecentReviews></RecentReviews>
-        <DiscoverFlavors></DiscoverFlavors>
-        <Stat></Stat>
+        <Hero />
+        <RecentReviews />
+        <DiscoverFlavors />
+        <Stat />
       </Container>
     </div>
   );

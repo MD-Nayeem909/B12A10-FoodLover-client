@@ -88,9 +88,9 @@ const Navbar = () => {
             </div>
             <NavLink
               to="/"
-              className="flex items-center text-xl text-[32px] font-bold"
+              className="flex items-center text-2xl font-bold"
             >
-              <img src="/FoodLover.png" alt="" className="w-15" />
+              <img src="/FoodLover.png" alt="" className="w-12" />
               Food<span className="text-gradient">Lover</span>
             </NavLink>
           </div>

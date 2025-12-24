@@ -37,23 +37,25 @@ const MyReviews = () => {
 
   return (
     <Container>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
-        <div className="flex justify-between items-center mb-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-12 flex-1">
+        <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-4xl font-bold mb-2">My Reviews</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">My Reviews</h1>
             <p className="text-accent animate-bounce">
               Manage all your food reviews in one place
             </p>
           </div>
-          {reviews.length > 0 && (
-            <Link
-              to="/create-review"
-              className="flex items-center gap-2 btn-primary rounded-md px-4 py-2"
-            >
-              <Plus size={20} />
-              Add Review
-            </Link>
-          )}
+          <div>
+            {reviews.length > 0 && (
+              <Link
+                to="/create-review"
+                className="flex items-center gap-2 btn-primary rounded-md px-4 py-2"
+              >
+                <Plus size={20} />
+                Add Review
+              </Link>
+            )}
+          </div>
         </div>
 
         {loading ? (

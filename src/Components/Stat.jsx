@@ -3,8 +3,8 @@ import React from "react";
 const Stat = () => {
   return (
     <section>
-      <div className="stats shadow w-full">
-        <div className="stat">
+      <div className="stats flex flex-col md:flex-row gap-4 md:gap-0 w-full">
+        <div className="stat shadow">
           <div className="stat-figure text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@ const Stat = () => {
           <div className="stat-desc">21% more than last month</div>
         </div>
 
-        <div className="stat">
+        <div className="stat shadow">
           <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const Stat = () => {
           <div className="stat-desc">21% more than last month</div>
         </div>
 
-        <div className="stat">
+        <div className="stat shadow">
           <div className="stat-figure text-secondary">
             <div className="avatar avatar-online">
               <div className="w-16 rounded-full">

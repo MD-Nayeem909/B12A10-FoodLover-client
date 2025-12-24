@@ -64,9 +64,9 @@ const AllReviews = () => {
 
   return (
     <Container>
-      <div className="my-20">
+      <div className="my-10 px-2">
         <div>
-          <h2 className="text-4xl font-bold mb-2">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">
             All Reviews:
             <span className="text-gradient"> {allReviews.length}</span>
           </h2>
