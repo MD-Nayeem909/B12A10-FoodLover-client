@@ -13,7 +13,7 @@ const AllReviews = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   const { data, loading } = useService(
-     `${import.meta.env.VITE_API_URL}/api/reviews`
+    `${import.meta.env.VITE_API_URL}/api/reviews`
   );
   const allReviews =
     (data.data && data.data.sort(() => Math.random() - 0.5)) || [];
@@ -64,7 +64,7 @@ const AllReviews = () => {
 
   return (
     <Container>
-      <div className="my-10 px-2">
+      <div className="my-10 px-2 md:px-0">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
             All Reviews:

@@ -16,7 +16,7 @@ const Footer = () => {
   return (
     <section className="bg-base-200 text-base-content">
       <Container>
-        <footer className="footer sm:footer-horizontal p-10">
+        <footer className="footer sm:footer-horizontal p-5 md:p-10">
           <nav>
             <h6 className="footer-title">Services</h6>
             {service.map((item, index) => (
@@ -41,7 +41,7 @@ const Footer = () => {
               </Link>
             ))}
           </nav>
-          <form>
+          <form className="flex flex-col gap-4 items-center text-center">
             <h6 className="footer-title">Subscribe Our Newsletter</h6>
             <fieldset className="w-80">
               <div className="join">
