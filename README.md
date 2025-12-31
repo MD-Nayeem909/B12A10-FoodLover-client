@@ -1,5 +1,7 @@
 🍽️ Food Lovers Network – Frontend (Client)
 
+Food Lovers Live Link - https://b12-a10-food-lover-client.vercel.app/
+
 Food Lovers Network is a modern MERN-based community platform where food enthusiasts can explore local restaurants, street food, and home-cooked meals.
 Users can share their food experiences, post reviews with photos, and discover what others are enjoying nearby.
 This frontend is built using React + Vite, styled with TailwindCSS v4, and powered by Firebase Authentication & Axios API integration.
@@ -104,9 +106,9 @@ food-lovers-client/
 
 User logs in using Firebase
 
-Firebase returns secure token
+Firebase returns a secure token
 
-Token is sent to backend during API calls
+Token is sent to the backend during API calls
 
 Protected routes require authentication (React Router v7)
 
