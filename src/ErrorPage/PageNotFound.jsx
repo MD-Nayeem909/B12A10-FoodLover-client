@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
 import image from "../assets/error-404.png";
-import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Navbar from "../Components/navbar/Navbar";
 
 const PageNotFound = () => {
   return (

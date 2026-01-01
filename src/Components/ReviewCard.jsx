@@ -1,9 +1,10 @@
-import { Heart, MapPin } from "lucide-react";
+import { ArrowRight, Heart, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import api from "../Utility/axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../Providers/AuthContext";
+import Button from "./button/Button";
 
 const ReviewCard = ({
   review,
@@ -42,9 +43,9 @@ const ReviewCard = ({
 
   return (
     <section key={review._id}>
-      <div className="card overflow-hidden group bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg">
+      <div className="card overflow-hidden group bg-base-100 shadow hover:shadow-md transition-shadow duration-300 rounded-lg">
         {/* Image */}
-        <div className="relative h-70 overflow-hidden bg-gray-200">
+        <div className="relative h-60 overflow-hidden bg-gray-200">
           <img
             src={review.image || "/placeholder.svg"}
             alt={review.foodName}
@@ -64,54 +65,60 @@ const ReviewCard = ({
 
         {/* Content */}
         <div className="p-4">
-          <h3 className="font-bold text-lg mb-2 text-text-primary">
-            {review.foodName}
-          </h3>
+          <section className="flex flex-col gap-1">
+            <h3 className="font-bold text-lg text-text-primary line-clamp-1">
+              {review.foodName}
+            </h3>
 
-          <div className="mb-3">
-            <p className="text-sm font-semibold text-text-primary">
-              {review.restaurantName}
-            </p>
-            <div className="flex items-center gap-1 text-sm text-text-secondary">
-              <MapPin size={16} />
-              {review.location}
+            {/* Location */}
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-text-primary line-clamp-1">
+                {review.restaurantName}
+              </p>
+              <p className="flex items-center gap-1 text-sm text-text-secondary">
+                <MapPin size={16} />
+                {review.location}
+              </p>
             </div>
-          </div>
 
-          {/* Rating */}
-          <div className="mb-3 flex items-center gap-2">
-            <div className="flex gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  className={`text-lg ${
-                    i < Math.floor(review.rating)
-                      ? "text-accent"
-                      : "text-gray-300"
-                  }`}
-                >
-                  ★
-                </span>
-              ))}
+            {/* Rating */}
+            <div className="flex items-center gap-2">
+              <div className="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span
+                    key={i}
+                    className={`text-lg ${
+                      i < Math.floor(review.rating)
+                        ? "text-accent"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              <span className="text-sm font-semibold text-text-primary">
+                {review.rating}
+              </span>
             </div>
-            <span className="text-sm font-semibold text-text-primary">
-              {review.rating}
-            </span>
-          </div>
 
-          {/* Reviewer & Button */}
-          <div className="flex justify-between items-center pt-3 border-t border-dashed border-gray-300">
-            <p className="text-sm text-text-secondary">
-              by {review.author?.username || author?.name || "Anonymous"}
-            </p>
-            <Link
-              to={`/review-details/${review._id}`}
-              state={review}
-              className="text-gradient hover:btn-primary btn text-sm font-semibold"
-            >
-              Details →
-            </Link>
-          </div>
+            {/* Reviewer Name*/}
+            <div className="">
+              <p className="text-sm text-text-secondary">
+                by {review.author?.username || author?.name || "Anonymous"}
+              </p>
+            </div>
+          </section>
+
+          <div className="divider"></div>
+
+          {/* Button */}
+          <Link to={`/review-details/${review._id}`} className="">
+            <Button state={review} className="w-full">
+              Details
+              <ArrowRight className="" size={18} />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -31,7 +31,7 @@ const RecentReviews = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 my-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 my-10 rounded-xl">
         {!loading ? (
           reviews.map((review) => {
             const isFavorite = user && user.favorites.includes(review._id);

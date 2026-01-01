@@ -1,12 +1,15 @@
 import { Link, NavLink } from "react-router";
-import Container from "../Utility/Container";
-import { Heart, LogIn, UserRoundPlus } from "lucide-react";
-import { useTheme } from "../Providers/ThemeProvider";
-import { useAuth } from "../Providers/AuthContext";
+import Container from "../../Utility/Container";
+import { Heart, LogIn, UserRoundPlus, Menu, X } from "lucide-react";
+import { useTheme } from "../../Providers/ThemeProvider";
+import { useAuth } from "../../Providers/AuthContext";
+import Logo from "../logo/Logo";
+import { useState } from "react";
 
 const Navbar = () => {
   const { user, setUser, logoutUser, loading } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     await logoutUser();
@@ -15,90 +18,92 @@ const Navbar = () => {
     window.location.href = "/";
   };
 
-  const NavItem = ({ to, children }) => (
+  const NavItem = ({ to, icon, text, className = "", onClick }) => (
     <li>
       <NavLink
         to={to}
-        className={({ isActive }) => (isActive ? "active-underline" : "")}
+        onClick={onClick}
+        className={({ isActive }) =>
+          `
+        relative flex items-center gap-2
+        text-sm font-medium transition-colors
+        after:absolute after:-bottom-0.5 after:left-0 after:h-0.5
+        after:bg-secondary after:transition-all after:duration-300
+        ${
+          isActive
+            ? "text-secondary after:w-full"
+            : "md:after:w-0 hover:text-secondary md:hover:after:w-full hover:bg-base-200 md:hover:bg-none"
+        }
+        ${className}
+        `
+        }
       >
-        {children}
+        {icon && icon}
+        {text}
       </NavLink>
     </li>
   );
 
-  const links = (
-    <>
-      <NavItem to="/">Home</NavItem>
-      <NavItem to="/all-reviews">All Reviews</NavItem>
-      <NavItem to="/my-reviews">My Reviews</NavItem>
-      <NavItem to="/create-review">Create Review</NavItem>
-      <NavItem to="/favorites">
-        <Heart size={18} className="text-accent" /> Favorites
-      </NavItem>
-      {!user && (
-        <div className="md:hidden">
-          <NavItem to="/auth/login">
-            {" "}
-            <LogIn size={18} className="text-accent" />
-            Login
-          </NavItem>
-          <NavItem to="/auth/register">
-            {" "}
-            <UserRoundPlus size={18} className="text-accent" />
-            Register
-          </NavItem>
-        </div>
-      )}
-    </>
-  );
+  const navLinks = [
+    {
+      to: "/",
+      text: "Home",
+    },
+    {
+      to: "/all-reviews",
+      text: "All Reviews",
+    },
+    {
+      to: "/my-reviews",
+      text: "My Reviews",
+    },
+    {
+      to: "/create-review",
+      text: "Create Review",
+    },
+    {
+      to: "/favorites",
+      text: "Favorites",
+      icon: <Heart size={18} className="text-accent" />,
+    },
+  ];
+
+  const authLinks = [
+    {
+      to: "/auth/login",
+      text: "Login",
+      icon: <LogIn size={18} className="text-accent" />,
+    },
+    {
+      to: "/auth/register",
+      text: "Register",
+      icon: <UserRoundPlus size={18} className="text-accent" />,
+    },
+  ];
 
   return (
     <div className="bg-base-100 shadow-sm">
       <Container>
         <div className="navbar">
           <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {" "}
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />{" "}
-                </svg>
-              </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
-              >
-                {links}
-              </ul>
-            </div>
-            <NavLink
-              to="/"
-              className="flex items-center text-2xl font-bold"
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="lg:hidden p-2 rounded-md transition-colors hover:bg-base-100"
+              aria-label="Toggle menu"
             >
-              <img src="/FoodLover.png" alt="" className="w-12" />
-              Food<span className="text-gradient">Lover</span>
-            </NavLink>
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+
+            <Logo />
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 flex justify-center items-center">
-              {links}
+            <ul className="flex items-center space-x-6">
+              {navLinks.map((link) => (
+                <NavItem key={link.to} {...link} />
+              ))}
             </ul>
           </div>
+
           <div className="navbar-end">
             <div className="mr-4">
               <label className="swap swap-rotate">
@@ -165,15 +170,55 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <div className="md:flex items-center hidden text-gradient font-semibold space-x-2">
-                <NavLink to="/auth/login" className="btn btn-outline-gradient">
+              <div className="md:flex items-center hidden font-semibold space-x-2">
+                <NavLink
+                  to="/auth/login"
+                  className="btn btn-soft btn-secondary text-xs lg:text-sm font-medium transition-all duration-300 shadow-none ease-in-out overflow-hidden"
+                >
                   Login
                 </NavLink>
-                <NavLink to="/auth/register" className="btn btn-primary">
+
+                <NavLink
+                  to="/auth/register"
+                  className="btn btn-primary hover:scale-105 text-xs lg:text-sm font-medium transition-all duration-300 shadow-none ease-in-out overflow-hidden"
+                >
                   Register
                 </NavLink>
               </div>
             )}
+          </div>
+        </div>
+        {/* Mobile Menu */}
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="border-t border-base-300 py-4">
+            <ul className="flex flex-col space-y-1">
+              {navLinks.map((link) => (
+                <NavItem
+                  key={link.to}
+                  {...link}
+                  className="px-3 py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                />
+              ))}
+
+              {!user && (
+                <>
+                  <div className="divider my-2" />
+                  {authLinks.map((link) => (
+                    <NavItem
+                      key={link.to}
+                      {...link}
+                      className="px-3 py-2"
+                      onClick={() => setIsMenuOpen(false)}
+                    />
+                  ))}
+                </>
+              )}
+            </ul>
           </div>
         </div>
       </Container>
