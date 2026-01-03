@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import ReviewCard from "../Components/ReviewCard";
+import ReviewCard from "../Components/card/ReviewCard";
 import Container from "../Utility/Container";
 import { Filter, Search } from "lucide-react";
 import useService from "../Hooks/useService";
@@ -240,7 +240,7 @@ const AllReviews = () => {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
                   {filteredReviews.map((review) => (
                     <div key={review._id}>
                       <ReviewCard review={review} />

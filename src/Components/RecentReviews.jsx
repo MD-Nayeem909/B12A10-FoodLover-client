@@ -1,9 +1,11 @@
 import React from "react";
-import ReviewCard from "./ReviewCard";
 import { Link } from "react-router";
 import useService from "../Hooks/useService";
 import Loading from "../Utility/Loading";
 import { useAuth } from "../Providers/AuthContext";
+import ReviewCard from "./card/ReviewCard";
+import Button from "./button/Button";
+import { MoveRight } from "lucide-react";
 
 const RecentReviews = () => {
   const { user } = useAuth();
@@ -15,16 +17,18 @@ const RecentReviews = () => {
     (data.data &&
       data.data
         .filter((r) => r.rating == 5)
-        .slice(0, 6)
+        .slice(0, 4)
         .sort(() => Math.random() - 0.5)) ||
     [];
 
+    console.log(reviews);
+    
+
   return (
     <div className="my-10 px-2 md:px-0">
-      <div className="">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2">
-          Featured Reviews:
-          <span className="text-gradient"> {reviews.length}</span>
+      <div className="text-center">
+        <h2 className="text-3xl md:text-[1.9rem] font-bold mb-2">
+          Featured Reviews
         </h2>
         <p className="text-accent animate-bounce">
           Top-rated food experiences from our community
@@ -49,8 +53,10 @@ const RecentReviews = () => {
           </div>
         )}
       </div>
-      <Link to="/all-reviews" className="btn btn-primary flex mx-auto w-fit">
-        Show All Reviews
+      <Link to="/all-reviews" className="flex justify-center">
+        <Button className="btn-primary btn-outline md:btn-lg">Show All Reviews
+          <MoveRight/>
+        </Button>
       </Link>
     </div>
   );

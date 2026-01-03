@@ -31,8 +31,8 @@ const Navbar = () => {
         after:bg-secondary after:transition-all after:duration-300
         ${
           isActive
-            ? "text-secondary after:w-full"
-            : "md:after:w-0 hover:text-secondary md:hover:after:w-full hover:bg-base-200 md:hover:bg-none"
+            ? "text-secondary lg:after:w-full"
+            : "after:w-0 hover:text-secondary lg:hover:after:w-full"
         }
         ${className}
         `
@@ -97,7 +97,7 @@ const Navbar = () => {
             <Logo />
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="flex items-center space-x-6">
+            <ul className="flex items-center gap-4">
               {navLinks.map((link) => (
                 <NavItem key={link.to} {...link} />
               ))}

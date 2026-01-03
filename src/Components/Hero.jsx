@@ -1,66 +1,130 @@
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
 import image1 from "../assets/food-menu-1.jpg";
 import image2 from "../assets/food-menu-2.jpg";
 import image3 from "../assets/food-menu-3.jpg";
 
-// Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const slides = [
+  {
+    image: image1,
+    badge: "BEYOND CHICKEN",
+    title: "CRISPY, JUICY &",
+    subtitle: "SIMPLY SATISFYING.",
+  },
+  {
+    image: image2,
+    badge: "SPECIAL MENU",
+    title: "FRESH & TASTY",
+    subtitle: "EVERY BITE COUNTS.",
+  },
+  {
+    image: image3,
+    badge: "CHEF CHOICE",
+    title: "MADE FOR",
+    subtitle: "FOOD LOVERS.",
+  },
+];
 
 const Hero = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <div>
+    <section className="bg-base-200 md:my-20 text-white relative">
       <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        modules={[Autoplay, Navigation, Pagination]}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        navigation
+        pagination={{ clickable: true }}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        className=""
       >
-        <SwiperSlide>
-          <section className="">
-            <div className="w-full overflow-hidden">
-              <img
-                src={image1}
-                alt=""
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+        {slides.map((slide, index) => (
+          <SwiperSlide key={index}>
+            <div className="mx-auto px-4 h-full">
+              <div className="grid grid-cols-1 lg:grid-cols-2 items-center h-full gap-10">
+                {/* LEFT IMAGE */}
+                <motion.div
+                  key={`img-${activeIndex}`}
+                  initial={{ opacity: 0, y: -80 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="relative overflow-hidden rounded-xl"
+                >
+                  <img
+                    src={slide.image}
+                    alt=""
+                    className="w-full h-80 sm:h-[420px] lg:h-[520px] object-cover"
+                  />
+                </motion.div>
+
+                {/* RIGHT CONTENT */}
+                <motion.div
+                  key={`text-${activeIndex}`}
+                  initial={{ opacity: 0, x: 80 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.15 }}
+                  className="flex flex-col gap-4"
+                >
+                    <span className="w-fit bg-secondary text-xs px-3 py-1 rounded-full tracking-wide">
+                      {slide.badge}
+                    </span>
+
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
+                      {slide.title} <br />
+                      <span className="text-secondary">{slide.subtitle}</span>
+                    </h1>
+
+                  <div className="flex gap-4 pt-4">
+                    <button className="btn btn-secondary text-secondary-content px-6">
+                      Product Details
+                    </button>
+                    <button className="btn btn-outline btn-secondary px-6">
+                      Learn More
+                    </button>
+                  </div>
+                </motion.div>
+              </div>
             </div>
-          </section>
-        </SwiperSlide>
-        <SwiperSlide>
-          <section className="rounded-lg ">
-            <div className="w-full">
-              <img
-                src={image2}
-                alt=""
-                className="object-cover overflow-hidden w-full"
-              />
-            </div>
-          </section>
-        </SwiperSlide>
-        <SwiperSlide>
-          <section className="rounded-lg ">
-            <div className="w-full">
-              <img
-                src={image3}
-                alt=""
-                className="object-cover overflow-hidden w-full"
-              />
-            </div>
-          </section>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
       </Swiper>
-    </div>
+
+      {/* Custom Arrow Position Fix */}
+      <style>
+        {`
+          .swiper-button-prev,
+          .swiper-button-next {
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4ade80;
+          }
+
+          .swiper-button-prev {
+            left: 30px;
+          }
+
+          .swiper-button-next {
+            right: 30px;
+          }
+
+          .swiper-pagination-bullet {
+            background: #86efac;
+            opacity: 0.5;
+          }
+
+          .swiper-pagination-bullet-active {
+            opacity: 1;
+          }
+        `}
+      </style>
+    </section>
   );
 };
 
