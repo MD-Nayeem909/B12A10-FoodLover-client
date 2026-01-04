@@ -178,7 +178,7 @@ export default function Testimonials() {
               stiffness: 300,
               damping: 25,
             }}
-            className="z-100 bg-base-100 backdrop-blur-sm shadow-xl rounded-xl p-3 md:p-4 w-68 md:w-98 text-center "
+            className="z-100 bg-base-100 backdrop-blur-lg shadow-xl rounded-xl p-3 md:p-4 w-full md:w-200 text-center "
           >
             <motion.img
               initial={{
@@ -212,7 +212,7 @@ export default function Testimonials() {
                 delay: 0.15,
               }}
             >
-              <h2 className="mt-2 text-base md:text-lg font-bold">
+              <h2 className="mt-2 text-primary md:text-lg font-bold">
                 {people[activeIndex].name}
               </h2>
               <div className="flex items-center justify-center text-xs text-neutral md:text-sm mt-1">
@@ -229,7 +229,7 @@ export default function Testimonials() {
                 |
                 <div className="flex items-center justify-center">
                   <span>{people[activeIndex].rating}</span>
-                  <Star size={12} className="ml-1" />
+                  <Star size={12} className="ml-1 text-primary" />
                 </div>
               </div>
               <div className="flex items-center justify-center text-xs text-neutral mt-0.5">
