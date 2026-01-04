@@ -10,6 +10,8 @@ import image3 from "../assets/food-menu-3.jpg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Button from "./button/Button";
+import { MoveRight } from "lucide-react";
 
 const slides = [
   {
@@ -36,7 +38,7 @@ const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-base-200 md:my-20 text-white relative">
+    <section className="bg-base-200 text-white relative">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -82,12 +84,13 @@ const Hero = () => {
                     </h1>
 
                   <div className="flex gap-4 pt-4">
-                    <button className="btn btn-secondary text-secondary-content px-6">
+                    <Button className="btn-secondary text-secondary-content px-6">
                       Product Details
-                    </button>
-                    <button className="btn btn-outline btn-secondary px-6">
+                      <MoveRight />
+                    </Button>
+                    <Button className="btn-outline btn-secondary px-6">
                       Learn More
-                    </button>
+                    </Button>
                   </div>
                 </motion.div>
               </div>

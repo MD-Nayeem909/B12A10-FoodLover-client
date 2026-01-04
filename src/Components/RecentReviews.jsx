@@ -20,12 +20,8 @@ const RecentReviews = () => {
         .slice(0, 4)
         .sort(() => Math.random() - 0.5)) ||
     [];
-
-    console.log(reviews);
-    
-
   return (
-    <div className="my-10 px-2 md:px-0">
+    <div className="px-2 md:px-0">
       <div className="text-center">
         <h2 className="text-3xl md:text-[1.9rem] font-bold mb-2">
           Featured Reviews
@@ -54,8 +50,9 @@ const RecentReviews = () => {
         )}
       </div>
       <Link to="/all-reviews" className="flex justify-center">
-        <Button className="btn-primary btn-outline md:btn-lg">Show All Reviews
-          <MoveRight/>
+        <Button className="btn-primary btn-outline md:btn-lg">
+          Show All Reviews
+          <MoveRight />
         </Button>
       </Link>
     </div>

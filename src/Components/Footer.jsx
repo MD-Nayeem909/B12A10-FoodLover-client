@@ -1,91 +1,144 @@
 import React from "react";
-import Container from "../Utility/Container";
-import { Link } from "react-router";
-import { FaFacebookF, FaInstagram, FaPinterestP } from "react-icons/fa";
+import Logo from "./logo/Logo";
 import { FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+
 
 const Footer = () => {
-  const service = ["Branding", "Design", "Marketing", "Advertisement"];
-  const support = [
-    "About us",
-    "Our Stores",
-    "Refund & Return",
-    "Delivery Information",
-  ];
-  const info = ["FAQ", "Terms & Conditions", "Contact Us", "Our Partners"];
   return (
-    <section className="bg-base-200 text-base-content">
-      <Container>
-        <footer className="footer sm:footer-horizontal p-5 md:p-10">
-          <nav>
-            <h6 className="footer-title">Services</h6>
-            {service.map((item, index) => (
-              <Link key={index} className="link link-hover">
-                {item}
-              </Link>
-            ))}
-          </nav>
-          <nav>
-            <h6 className="footer-title">Support</h6>
-            {support.map((item, index) => (
-              <Link key={index} className="link link-hover">
-                {item}
-              </Link>
-            ))}
-          </nav>
-          <nav>
-            <h6 className="footer-title">Info</h6>
-            {info.map((item, index) => (
-              <Link key={index} className="link link-hover">
-                {item}
-              </Link>
-            ))}
-          </nav>
-          <form className="flex flex-col gap-4 items-center text-center">
-            <h6 className="footer-title">Subscribe Our Newsletter</h6>
-            <fieldset className="w-80">
-              <div className="join">
-                <input
-                  type="text"
-                  placeholder="Your email address"
-                  className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 rounded-l-full join-item"
-                />
-                <button className="btn btn-primary join-item rounded-r-full">
-                  Subscribe
-                </button>
-              </div>
-            </fieldset>
-            <p className="text-accent">
-              Subscribe to get special offers, free giveaways, <br /> and
-              once-in-a-lifetime deals.
-            </p>
-          </form>
-        </footer>
-        <hr className=" text-gray-300" />
-        <div className="grid grid-cols-12 gap-4 py-4 md:py-6">
-          <p className="text-sm grid col-span-12 md:col-span-6 place-content-center">
-            Copyright © {new Date().getFullYear()} - All right reserved
+    <footer className=" bg-base-100 py-12 px-4 border-t border-base-300">
+      <div className="container mx-auto flex flex-col md:flex-row gap-6">
+        <div className="space-y-4 md:w-2/3">
+          <Logo />
+          <p className="text-sm leading-relaxed text-neutral">
+            Local Food Lovers Network is a community-driven platform that
+            connects people who love exploring great food. We aim to provide a
+            platform where people can share their experiences, discover new food
+            spots, and connect with like-minded individuals. Our mission is to
+            make local food discovery easy and enjoyable for everyone.
           </p>
-          <p className="grid col-span-12 md:col-span-6 place-content-center">
-            <span className="flex gap-2">
-              <Link to="#" className="hover:text-primary">
-                <FaFacebookF size={20} />
-              </Link>
-              <Link to="#" className="hover:text-primary">
-                <FaPinterestP size={20} />
-              </Link>
-              <Link to="#" className="hover:text-primary">
-                <FaInstagram size={20} />
-              </Link>
-              <Link to="#" className="hover:text-primary">
-                <FaXTwitter size={20} />
-              </Link>
-            </span>
-          </p>
+          <div className="flex space-x-5 pt-2">
+            <a
+              href="https://github.com/MD-Nayeem909"
+              className="text-neutral hover:text-secondary transition-transform transform hover:scale-110"
+            >
+              <FaGithub size={28} />
+            </a>
+            <a
+              href="https://x.com/md_nayeem98"
+              className="text-neutral hover:text-secondary transition-transform transform hover:scale-110"
+            >
+              <FaXTwitter size={28} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/md-nayeem98/"
+              className="text-neutral hover:text-secondary transition-transform transform hover:scale-110"
+            >
+              <FaLinkedinIn size={28} />
+            </a>
+          </div>
         </div>
-      </Container>
-    </section>
+        <div className="flex flex-col md:flex-row gap-6 justify-between w-full">
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">Quick Links</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/about-us"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/all-reviews"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  Reviews
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/blog"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">Resources</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  Support
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  FAQs
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact-us"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-neutral hover:text-secondary transition-colors duration-300"
+                >
+                  Terms of Service
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">Contact Us</h3>
+            <p className="text-neutral">
+              123 Tech Avenue, Innovation City, 98765
+            </p>
+            <p className="text-neutral">Email: info@yourbrand.com</p>
+            <p className="text-neutral">Phone: +1 (555) 123-4567</p>
+          </div>
+        </div>
+      </div>
+      <div className="text-center text-neutral text-sm pt-10 mt-10 border-t border-base-300">
+        <p className="text-neutral font-medium">
+          &copy; {new Date().getFullYear()}{" "}
+          <span className="text-primary">FoodLover</span>. All rights reserved.
+        </p>
+      </div>
+    </footer>
   );
 };
-
 export default Footer;

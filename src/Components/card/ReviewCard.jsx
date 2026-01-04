@@ -42,7 +42,7 @@ const ReviewCard = ({
   }, []);
 
   return (
-    <div className="relative w-full  bg-base-100 rounded-box shadow-sm hover:shadow-lg p-6 pt-12 mt-16 text-center group cursor-pointer transform transition-all duration-300 hover:-translate-y-3 ease-in-out">
+    <div className="relative w-full  bg-base-100 rounded-box shadow-sm hover:shadow-lg p-6 pt-12 mt-16 text-center group cursor-pointer transform transition-all duration-300 hover:-translate-y-3 ease-in-out clip-path-[polygon(0_35%,100%_0,100%_100%,0_100%)]">
       {/* Large Screen View */}
       <div className="hidden md:block absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full border-[6px] border-base-200 shadow-lg overflow-hidden bg-base-100">
         <img
@@ -60,22 +60,17 @@ const ReviewCard = ({
         />
       </div>
 
-      <div className="flex justify-between items-start mb-10 px-2">
-        <div className="flex flex-col items-center gap-1">
-          <Star size={20} className="fill-yellow-400 text-yellow-400" />
-          <span className="font-bold text-gray-800">{review.rating}</span>
-        </div>
+      <div className="flex justify-end mb-20 md:mb-4 px-2">
         <button
           onClick={handleFavorite}
-          className="flex flex-col items-center gap-1 transition-transform active:scale-90"
+          className="flex items-center justify-center rounded-full transition-transform active:scale-90"
         >
           <Heart
-            size={22}
+            size={24}
             className={`${
-              isFavorited ? "fill-red-500 text-red-500" : "text-gray-400"
+              isFavorited ? "fill-primary text-primary" : "text-gray-400"
             }`}
           />
-          <span className="text-xs font-semibold text-gray-500">1.5k</span>
         </button>
       </div>
 
@@ -96,14 +91,33 @@ const ReviewCard = ({
               <span className="line-clamp-1">{review.location}</span>
             </div>
           </div>
+          <div className="flex items-center gap-2">
+            <div className="flex">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  className={`text-lg ${
+                    i < Math.floor(review.rating)
+                      ? "text-accent"
+                      : "text-gray-300"
+                  }`}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+            <span className="text-sm font-semibold text-text-primary">
+              {review.rating}
+            </span>
+          </div>
           <div className="text-sm text-text-secondary">
             by {review.author?.username || author?.name || "Anonymous"}
           </div>
         </section>
 
         <section className="flex flex-col items-center gap-2 justify-center">
-          <Link to={`/review-details/${review._id}`}>
-            <button className="flex btn rounded-lg hover:shadow-sm hover:bg-primary/20 hover:text-primary transition-all duration-300">
+          <Link to={`/review-details/${review._id}`} state={review}>
+            <button className="flex btn btn-ghost rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300">
               Details
               <ArrowRight size={20} className="ml-2" />
             </button>

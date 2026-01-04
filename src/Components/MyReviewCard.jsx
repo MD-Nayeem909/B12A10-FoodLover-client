@@ -1,7 +1,6 @@
 import { Edit2, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import DeleteModal from "../Utility/DeleteModal";
-import axios from "axios";
 import api from "../Utility/axios";
 import formatDateForWeb from "../Utility/formatDateForWeb";
 

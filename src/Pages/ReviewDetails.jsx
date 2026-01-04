@@ -16,7 +16,7 @@ const ReviewDetails = () => {
 
   const [isFavorited, setIsFavorited] = useState(false);
   const reviewData = locationData?.state?.review || locationData?.state;
-
+  
   const {
     _id,
     foodName,

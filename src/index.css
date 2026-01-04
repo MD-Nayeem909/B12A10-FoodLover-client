@@ -1,12 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
 
 * {
-  font-family: "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
+
+.playfair {
+  font-family: "Playfair Display", serif;
+}
+
 
 @plugin "daisyui/theme" {
   name: "light";
@@ -111,6 +116,10 @@
   [data-theme="dark"] body {
     @apply bg-base-200;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 

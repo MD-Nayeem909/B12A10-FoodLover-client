@@ -13,6 +13,8 @@ import CreateReview from '../Pages/CreateReview';
 import EditReview from '../Pages/EditReview';
 import PageNotFound from '../ErrorPage/PageNotFound';
 import Loading from '../Utility/Loading';
+import AboutUs from '../Pages/AboutUs';
+import ContactUs from '../Pages/ContactUs';
 
 const authLoader = () => {
 	if (!localStorage.getItem('token')) {
@@ -58,6 +60,14 @@ const Router = createBrowserRouter([
 			{
 				path: '/edit-review/:id',
 				element: <EditReview />,
+			},
+			{
+				path: '/about-us',
+				element: <AboutUs />,
+			},
+			{
+				path: '/contact-us',
+				element: <ContactUs />,
 			},
 		],
 	},
