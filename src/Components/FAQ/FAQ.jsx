@@ -109,7 +109,7 @@ const FAQ = forwardRef(
         {}
         <div className="text-center space-y-4">
           <div className="relative inline-block">
-            <h2 className="text-4xl md:text-4xl font-bold">{title}</h2>
+            <h2 className="text-3xl text-primary font-bold">{title}</h2>
           </div>
           <p className="text-neutral text-lg max-w-2xl mx-auto">
             Find answers to common questions. Click on any question to expand.

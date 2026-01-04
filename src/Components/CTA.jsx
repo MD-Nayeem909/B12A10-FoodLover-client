@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const CTA = () => {
   return (
-    <section className="py-20 px-6 bg-base-100 text-white text-center rounded-4xl">
+    <section className="py-10 md:py-20 px-6 bg-base-100 text-center rounded-2xl">
       <h2 className="text-3xl text-primary font-semibold mb-4">
         Ready to Share Your Food Experience?
       </h2>

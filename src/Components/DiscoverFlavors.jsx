@@ -8,7 +8,7 @@ const DiscoverFlavors = () => {
     <section className="hero bg-base-100 lg:p-10 rounded-2xl">
       <div className="flex flex-col justify-between items-center gap-4 lg:gap-8 py-10 px-5">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl text-gradient font-bold ">
+          <h2 className="text-3xl text-primary font-bold ">
             Discover Local Flavors!
           </h2>
           <p className="text-neutral ">
@@ -21,7 +21,7 @@ const DiscoverFlavors = () => {
           <Link to="all-reviews" className="btn btn-primary">
             Explore Reviews
           </Link>
-          <Link to="create-review" className="btn btn-outline btn-primary">
+          <Link to="create-review" className="btn text-primary btn-outline outline-base-300">
             Share Your Meal
           </Link>
         </div>

@@ -116,9 +116,30 @@
   }
 }
 
-.test {
-  background: linear-gradient(to right, #632ee3, #9f62f2);
-  color: white;
+@layer components {
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: 80%;
+    transform: translateY(50%);
+    color: #ff5b5b;
+  }
+
+  .swiper-button-prev {
+    left: 30px;
+  }
+
+  .swiper-button-next {
+    right: 30px;
+  }
+
+  .swiper-pagination-bullet {
+    background: #f87272;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
 }
 
 html {

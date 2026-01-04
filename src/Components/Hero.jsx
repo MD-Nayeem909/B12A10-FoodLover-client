@@ -38,7 +38,7 @@ const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-base-200 text-white relative">
+    <section className="bg-base-200 relative">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -74,7 +74,7 @@ const Hero = () => {
                   transition={{ duration: 1.5, ease: "easeOut", delay: 0.15 }}
                   className="flex flex-col gap-4"
                 >
-                    <span className="w-fit bg-secondary text-xs px-3 py-1 rounded-full tracking-wide">
+                    <span className="w-fit bg-secondary text-secondary-content text-xs px-3 py-1 rounded-full tracking-wide">
                       {slide.badge}
                     </span>
 
@@ -104,9 +104,9 @@ const Hero = () => {
         {`
           .swiper-button-prev,
           .swiper-button-next {
-            top: 50%;
-            transform: translateY(-50%);
-            color: #4ade80;
+            top: 80%;
+            transform: translateY(50%);
+            color: #ff5b5b;
           }
 
           .swiper-button-prev {
@@ -118,8 +118,9 @@ const Hero = () => {
           }
 
           .swiper-pagination-bullet {
-            background: #86efac;
+            background: #f87272;
             opacity: 0.5;
+            width: 10px;
           }
 
           .swiper-pagination-bullet-active {

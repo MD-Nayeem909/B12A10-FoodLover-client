@@ -1,73 +1,95 @@
-"use client";
-
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MapPinCheck,
+  Star,
+  UserRoundPen,
+} from "lucide-react";
 const people = [
   {
     id: 1,
-    name: "Albert Einstein",
-    role: "Theoretical Physicist",
-    email: "einstein@example.com",
-    profile:
-      "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
+    name: "Rahim Uddin",
+    role: "Street Food Explorer",
+    location: "Dhaka",
+    rating: 5,
+    profile: "https://randomuser.me/api/portraits/men/32.jpg",
+    message:
+      "This platform helped me discover hidden street food gems I would’ve never found on Google. The reviews feel honest and community-driven.",
   },
   {
     id: 2,
-    name: "Isaac Newton",
-    role: "Physicist & Mathematician",
-    email: "newton@example.com",
-    profile:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg/1200px-Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg",
+    name: "Nusrat Jahan",
+    role: "Home Chef & Food Blogger",
+    location: "Chattogram",
+    rating: 4.5,
+    profile: "https://randomuser.me/api/portraits/women/44.jpg",
+    message:
+      "I love how real people share real food experiences here. Posting my own reviews was super easy and the UI feels premium.",
   },
   {
     id: 3,
-    name: "Marie Curie",
-    role: "Physicist & Chemist",
-    email: "curie@example.com",
-    profile:
-      "https://upload.wikimedia.org/wikipedia/commons/7/7e/Marie_Curie_c1920.jpg",
+    name: "Tanvir Hasan",
+    role: "Cafe Hopper",
+    location: "Khulna",
+    rating: 5,
+    profile: "https://randomuser.me/api/portraits/men/65.jpg",
+    message:
+      "Finally a food review platform that focuses on local flavors instead of sponsored hype. This feels built for food lovers.",
   },
   {
     id: 4,
-    name: "Nikola Tesla",
-    role: "Inventor & Engineer",
-    email: "tesla@example.com",
-    profile: "https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG",
+    name: "Farzana Akter",
+    role: "Dessert Lover",
+    location: "Sylhet",
+    rating: 4,
+    profile: "https://randomuser.me/api/portraits/women/68.jpg",
+    message:
+      "The dessert recommendations here are amazing. I’ve tried three new local bakeries already and loved every visit.",
   },
   {
     id: 5,
-    name: "Charles Darwin",
-    role: "Naturalist & Biologist",
-    email: "darwin@example.com",
-    profile:
-      "https://hips.hearstapps.com/hmg-prod/images/gettyimages-79035252.jpg?crop=1xw:1.0xh;center,top&resize=640:*",
+    name: "Mehedi Hasan",
+    role: "University Student",
+    location: "Rajshahi",
+    rating: 4.5,
+    profile: "https://randomuser.me/api/portraits/men/41.jpg",
+    message:
+      "As a student, I always look for affordable food spots. This platform makes it super easy to find budget-friendly local food.",
   },
   {
     id: 6,
-    name: "Galileo Galilei",
-    role: "Astronomer & Physicist",
-    email: "galileo@example.com",
-    profile:
-      "https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/galileo-galilei-gettyimages-51246872?_a=BAVAZGDX0",
+    name: "Sadia Rahman",
+    role: "Weekend Foodie",
+    location: "Barishal",
+    rating: 5,
+    profile: "https://randomuser.me/api/portraits/women/22.jpg",
+    message:
+      "I usually eat out on weekends, and this app has become my go-to guide. The community reviews feel genuine and helpful.",
   },
   {
     id: 7,
-    name: "Stephen Hawking",
-    role: "Theoretical Physicist",
-    email: "hawking@example.com",
-    profile:
-      "https://upload.wikimedia.org/wikipedia/commons/e/eb/Stephen_Hawking.StarChild.jpg",
+    name: "Arif Hossain",
+    role: "Office Professional",
+    location: "Gazipur",
+    rating: 4,
+    profile: "https://randomuser.me/api/portraits/men/58.jpg",
+    message:
+      "I like how clean and simple the interface is. Finding good lunch spots near my office has never been easier.",
   },
   {
     id: 8,
-    name: "Richard Feynman",
-    role: "Theoretical Physicist",
-    email: "feynman@example.com",
-    profile:
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiz7DeuUmHN7TiT3xf7cV7UPBJNDtEvjNZcgMmNElTmOJYaec6zQI0UiLU04jZP6hqkeLcrnaC5NP4WC_zRQzP3_QhLumNxyzPOsC-WEmWQyYsadq1Eg_V_jEjDfCdddeQgJjY_OOB1KLMj6o2ShA6ycHwM91I430Yr9tkYTn6759jDmcGAsONOACbi/w1200-h630-p-k-no-nu/richard%20feynman%20quotes%20atheism%20religion%20science.png",
+    name: "Mim Chowdhury",
+    role: "Food Photography Enthusiast",
+    location: "Cumilla",
+    rating: 5,
+    profile: "https://randomuser.me/api/portraits/women/12.jpg",
+    message:
+      "Sharing food photos and reviews here feels rewarding. It’s great to be part of a community that appreciates local flavors.",
   },
 ];
+
 const safeImage = (e) => {
   const target = e.target;
   target.src = "https://placehold.co/100x100/E0E7FF/4338CA?text=Error";
@@ -156,7 +178,7 @@ export default function Testimonials() {
               stiffness: 300,
               damping: 25,
             }}
-            className="z-10 bg-base-100 backdrop-blur-sm shadow-xl rounded-xl p-3 md:p-4 w-68 md:w-98 text-center "
+            className="z-100 bg-base-100 backdrop-blur-sm shadow-xl rounded-xl p-3 md:p-4 w-68 md:w-98 text-center "
           >
             <motion.img
               initial={{
@@ -174,7 +196,7 @@ export default function Testimonials() {
               src={people[activeIndex].profile}
               alt={people[activeIndex].name}
               onError={safeImage}
-              className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto -mt-10 md:-mt-12 border-4 border-base-200 object-cover shadow-md hidden md:block"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto -mt-10 md:-mt-12 border-4 border-base-200 object-cover shadow-md hidden"
             />
             <motion.div
               initial={{
@@ -194,12 +216,24 @@ export default function Testimonials() {
                 {people[activeIndex].name}
               </h2>
               <div className="flex items-center justify-center text-xs text-neutral md:text-sm mt-1">
-                <Briefcase size={12} className="mr-1" />
+                <UserRoundPen size={12} className="mr-1" />
                 <span className="truncate">{people[activeIndex].role}</span>
               </div>
+              <div className="flex items-center justify-center text-xs gap-4 text-neutral mt-0.5">
+                <div className="flex items-center justify-center">
+                  <MapPinCheck size={12} className="mr-1" />
+                  <span className="truncate">
+                    {people[activeIndex].location}
+                  </span>
+                </div>{" "}
+                |
+                <div className="flex items-center justify-center">
+                  <span>{people[activeIndex].rating}</span>
+                  <Star size={12} className="ml-1" />
+                </div>
+              </div>
               <div className="flex items-center justify-center text-xs text-neutral mt-0.5">
-                <Mail size={12} className="mr-1" />
-                <span className="truncate">{people[activeIndex].email}</span>
+                <span className="">{people[activeIndex].message}</span>
               </div>
             </motion.div>
             <motion.div
@@ -290,7 +324,7 @@ export default function Testimonials() {
                   className={`w-full h-full object-cover rounded-full cursor-pointer transition-all duration-300 ${
                     isActive
                       ? "border-4 border-primary shadow-lg"
-                      : "border-2 border-gray-300 hover:border-primary"
+                      : "border-2 border-base-300 hover:border-primary"
                   }`}
                 />
               </motion.div>
@@ -306,9 +340,7 @@ export default function Testimonials() {
             key={index}
             onClick={() => setActiveIndex(index)}
             className={`w-2 h-2 rounded-full ${
-              index === activeIndex
-                ? "bg-primary"
-                : "bg-gray-300"
+              index === activeIndex ? "bg-primary" : "bg-base-300"
             }`}
             whileHover={{
               scale: 1.3,

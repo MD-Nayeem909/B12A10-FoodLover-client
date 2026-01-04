@@ -3,27 +3,10 @@ import review2 from "/review2.jpg";
 import review4 from "/review4.jpg";
 
 const Highlights = () => {
-  const items = [
-    {
-      title: "Discover Local Favorites",
-      desc: "Explore authentic local food spots shared by real food lovers.",
-      icon: "🍽️",
-    },
-    {
-      title: "Honest Reviews",
-      desc: "Ratings and reviews based on real dining experiences.",
-      icon: "⭐",
-    },
-    {
-      title: "Community Driven",
-      desc: "Join a growing community that celebrates local flavors.",
-      icon: "🤝",
-    },
-  ];
-
+ 
   return (
     <section className="space-y-4 ">
-      <h2 className="text-3xl font-semibold text-center mb-10">
+      <h2 className="text-3xl font-semibold text-primary text-center mb-10">
         Why Food Lovers Choose Us
       </h2>
 

@@ -23,10 +23,10 @@ const RecentReviews = () => {
   return (
     <div className="px-2 md:px-0">
       <div className="text-center">
-        <h2 className="text-3xl md:text-[1.9rem] font-bold mb-2">
+        <h2 className="text-3xl text-primary font-bold mb-2">
           Featured Reviews
         </h2>
-        <p className="text-accent animate-bounce">
+        <p className="text-neutral animate-bounce">
           Top-rated food experiences from our community
         </p>
       </div>
