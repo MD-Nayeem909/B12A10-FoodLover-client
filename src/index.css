@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
@@ -12,7 +12,6 @@
   font-family: "Playfair Display", serif;
 }
 
-
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
@@ -20,34 +19,34 @@
   color-scheme: light;
 
   /* Background & Base Colors */
-  --color-base-100: #FFFFFF;        /* কার্ডের মেইন সাদা ব্যাকগ্রাউন্ড */
-  --color-base-200: #F9FAFB;        /* পেজের হালকা অফ-হোয়াইট ব্যাকগ্রাউন্ড */
-  --color-base-300: #E5E7EB;        /* বর্ডার এবং ডিভাইডার কালার */
-  
+  --color-base-100: #ffffff; /* কার্ডের মেইন সাদা ব্যাকগ্রাউন্ড */
+  --color-base-200: #f9fafb; /* পেজের হালকা অফ-হোয়াইট ব্যাকগ্রাউন্ড */
+  --color-base-300: #e5e7eb; /* বর্ডার এবং ডিভাইডার কালার */
+
   /* Content (Text) Colors */
-  --color-base-content: #1A1A1A;    /* টাইটেল এবং মেইন টেক্সট (খুবই ডার্ক গ্রে) */
-  --color-neutral: #6B7280;         /* ডেসক্রিপশন এবং সেকেন্ডারি টেক্সট */
-  --color-neutral-content: #FFFFFF;
+  --color-base-content: #1a1a1a; /* টাইটেল এবং মেইন টেক্সট (খুবই ডার্ক গ্রে) */
+  --color-neutral: #6b7280; /* ডেসক্রিপশন এবং সেকেন্ডারি টেক্সট */
+  --color-neutral-content: #ffffff;
 
   /* Brand Colors from Image */
-  --color-primary: #FF5B5B;         /* ইমেজের সেই লাল/স্যালমন কালার (বাটন ও আইকন) */
-  --color-primary-content: #FFFFFF;
+  --color-primary: #ff5b5b; /* ইমেজের সেই লাল/স্যালমন কালার (বাটন ও আইকন) */
+  --color-primary-content: #ffffff;
 
-  --color-secondary: #FFB800;       /* রেটিং স্টার কালার (গোল্ডেন ইয়েলো) */
-  --color-secondary-content: #1A1A1A;
+  --color-secondary: #ffb800; /* রেটিং স্টার কালার (গোল্ডেন ইয়েলো) */
+  --color-secondary-content: #1a1a1a;
 
-  --color-accent: #F87272;          /* হার্ট আইকন বা হাইলাইট কালার */
-  --color-accent-content: #FFFFFF;
+  --color-accent: #f87272; /* হার্ট আইকন বা হাইলাইট কালার */
+  --color-accent-content: #ffffff;
 
   /* Functional Colors */
-  --color-info: #3ABFF8;
-  --color-info-content: #FFFFFF;
-  --color-success: #36D399;
-  --color-success-content: #FFFFFF;
-  --color-warning: #FBBD23;
-  --color-warning-content: #1A1A1A;
-  --color-error: #F87272;
-  --color-error-content: #FFFFFF;
+  --color-info: #3abff8;
+  --color-info-content: #ffffff;
+  --color-success: #36d399;
+  --color-success-content: #ffffff;
+  --color-warning: #fbbd23;
+  --color-warning-content: #1a1a1a;
+  --color-error: #f87272;
+  --color-error-content: #ffffff;
 
   /* UI Spacing & Radius (ইমেজের মতো রাউন্ডেড লুকের জন্য) */
   --radius-selector: 1rem;
@@ -66,40 +65,39 @@
   color-scheme: dark;
 
   /* Background & Base Colors (Dark Mode) */
-  --color-base-100: #1D232A;        /* ডার্ক কার্ড ব্যাকগ্রাউন্ড */
-  --color-base-200: #15191E;        /* ডার্ক মেইন পেজ ব্যাকগ্রাউন্ড */
-  --color-base-300: #2A323C;        /* ডার্ক বর্ডার এবং ডিভাইডার */
-  
+  --color-base-100: #1d232a; /* ডার্ক কার্ড ব্যাকগ্রাউন্ড */
+  --color-base-200: #15191e; /* ডার্ক মেইন পেজ ব্যাকগ্রাউন্ড */
+  --color-base-300: #2a323c; /* ডার্ক বর্ডার এবং ডিভাইডার */
+
   /* Content (Text) Colors (Dark Mode) */
-  --color-base-content: #E5E7EB;    /* হালকা ধূসর টাইটেল ও মেইন টেক্সট */
-  --color-neutral: #9CA3AF;         /* ডেসক্রিপশনের জন্য ফিকে ধূসর */
+  --color-base-content: #e5e7eb; /* হালকা ধূসর টাইটেল ও মেইন টেক্সট */
+  --color-neutral: #9ca3af; /* ডেসক্রিপশনের জন্য ফিকে ধূসর */
   --color-neutral-content: #111827;
 
   /* Brand Colors from Image (Remains Vibrant) */
-  --color-primary: #FF5B5B;         /* লাল বাটন ও আইকন */
-  --color-primary-content: #15191E;
+  --color-primary: #ff5b5b; /* লাল বাটন ও আইকন */
+  --color-primary-content: #15191e;
 
-  --color-secondary: #FFB800;       /* রেটিং স্টার কালার */
+  --color-secondary: #ffb800; /* রেটিং স্টার কালার */
   --color-secondary-content: #111827;
 
-  --color-accent: #F87272;          /* হার্ট বা হাইলাইট */
-  --color-accent-content: #FFFFFF;
+  --color-accent: #f87272; /* হার্ট বা হাইলাইট */
+  --color-accent-content: #ffffff;
 
   /* Functional Colors */
-  --color-info: #3ABFF8;
+  --color-info: #3abff8;
   --color-info-content: #111827;
-  --color-success: #36D399;
+  --color-success: #36d399;
   --color-success-content: #111827;
-  --color-warning: #FBBD23;
+  --color-warning: #fbbd23;
   --color-warning-content: #111827;
-  --color-error: #F87272;
-  --color-error-content: #FFFFFF;
+  --color-error: #f87272;
+  --color-error-content: #ffffff;
 
   /* UI Spacing & Radius */
   --radius-selector: 1rem;
   --radius-field: 0.5rem;
   --radius-box: 80px 40px 40px 40px;
-
   --border: 1px;
   --depth: 1;
   --noise: 0;
@@ -118,10 +116,14 @@
   }
 }
 
+.test {
+  background: linear-gradient(to right, #632ee3, #9f62f2);
+  color: white;
+}
+
 html {
   scroll-behavior: smooth;
 }
-
 
 /* .text-gradient {
   @apply bg-linear-to-br from-primary to-secondary text-transparent bg-clip-text;
@@ -153,4 +155,3 @@ html {
   @apply text-white transition duration-300 ease-in-out;
   background: linear-gradient(to right, #9f62f2, #632ee3);
 } */
-

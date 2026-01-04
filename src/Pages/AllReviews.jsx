@@ -4,6 +4,7 @@ import Container from "../Utility/Container";
 import { Filter, Search } from "lucide-react";
 import useService from "../Hooks/useService";
 import Loading from "../Utility/Loading";
+import CustomSortSelect from "../Components/CustomSortSelect";
 
 const AllReviews = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -66,11 +67,11 @@ const AllReviews = () => {
     <Container>
       <div className="my-10 px-2 md:px-0">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">
+          <h2 className="text-3xl font-bold mb-2">
             All Reviews:
-            <span className="text-gradient"> {allReviews.length}</span>
+            <span className="text-primary"> {allReviews.length}</span>
           </h2>
-          <p className="text-accent mb-8 animate-bounce">
+          <p className="text-neutral mb-8 animate-bounce">
             Browse all food reviews from our community
           </p>
         </div>
@@ -83,7 +84,7 @@ const AllReviews = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search by food, restaurant, or location..."
-              className="w-full pl-10 pr-4 py-3 border border-border border-gray-300 bg-base-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent rounded-lg  "
+              className="w-full pl-10 pr-4 py-3 border border-border border-base-300 bg-base-100 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent rounded-lg  "
             />
           </div>
         </div>
@@ -91,12 +92,12 @@ const AllReviews = () => {
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="md:hidden flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-background"
+            className="md:hidden flex items-center gap-2 btn text-neutral font-semibold border-2 border-base-300 rounded-lg"
           >
             <Filter size={20} />
             Filters
             {hasActiveFilters && (
-              <span className="ml-auto bg-primary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+              <span className="ml-auto bg-primary text-neutral rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
                 {(searchTerm ? 1 : 0) +
                   (selectedRating !== null ? 1 : 0) +
                   (selectedLocation ? 1 : 0)}
@@ -104,15 +105,8 @@ const AllReviews = () => {
             )}
           </button>
 
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="px-4 py-2 border border-border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-max bg-base-100"
-          >
-            <option value="recent">Most Recent</option>
-            <option value="rating">Highest Rating</option>
-            <option value="oldest">Oldest First</option>
-          </select>
+          {/* Custom Sort */}
+          <CustomSortSelect value={sortBy} onChange={(val) => setSortBy(val)} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -120,11 +114,11 @@ const AllReviews = () => {
           <div
             className={`${
               showFilters ? "block" : "hidden"
-            } md:block lg:col-span-1 shadow-md rounded-lg lg:sticky top-20 bg-base-100`}
+            } md:block lg:col-span-1 shadow-md rounded-lg lg:sticky bg-base-100`}
           >
-            <div className="card p-6 sticky top-20">
+            <div className="p-6 sticky top-0">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-lg text-text-primary">Filters</h3>
+                <h3 className="font-bold text-lg ">Filters</h3>
                 {hasActiveFilters && (
                   <button
                     onClick={() => {
@@ -140,7 +134,7 @@ const AllReviews = () => {
 
               {/* Rating Filter */}
               <div className="mb-6">
-                <h4 className="font-semibold text-text-primary mb-3">
+                <h4 className="font-semibold text-neutral mb-3">
                   Minimum Rating
                 </h4>
                 <div className="space-y-2">
@@ -160,27 +154,27 @@ const AllReviews = () => {
                         }
                         className="w-4 h-4 rounded"
                       />
-                      <span className="text-sm text-text-primary">
+                      <span className="text-sm text-neutral">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <span
                             key={i}
                             className={
-                              i < rating ? "text-accent" : "text-gray-300"
+                              i < rating ? "text-accent" : "text-neutral"
                             }
                           >
                             ★
                           </span>
                         ))}
                       </span>
-                      <span className="text-sm text-text-secondary">& up</span>
+                      <span className="text-sm text-neutral">& up</span>
                     </label>
                   ))}
                 </div>
               </div>
 
               {/* Location Filter */}
-              <div className="border-t border-border pt-6">
-                <h4 className="font-semibold text-text-primary mb-3">
+              <div className="border-t border-base-300 pt-6">
+                <h4 className="font-semibold text-neutral mb-3">
                   Location
                 </h4>
                 <div className="space-y-2">
@@ -199,7 +193,7 @@ const AllReviews = () => {
                         }
                         className="w-4 h-4 rounded"
                       />
-                      <span className="text-sm text-text-primary">
+                      <span className="text-sm text-neutral">
                         {location}
                       </span>
                     </label>
@@ -225,7 +219,7 @@ const AllReviews = () => {
                   <h2 className="text-2xl font-bold mb-2 text-text-primary">
                     No reviews found
                   </h2>
-                  <p className="text-text-secondary mb-6">
+                  <p className="text-neutral mb-6">
                     Try adjusting your search or filter criteria
                   </p>
                   <button
@@ -234,7 +228,7 @@ const AllReviews = () => {
                       setSelectedRating(null);
                       setSelectedLocation(null);
                     }}
-                    className="btn-primary flex mx-auto w-fit"
+                    className="flex mx-auto transition-all duration-300 shadow-none ease-in-out overflow-hidden btn btn-primary rounded-bl-4xl rounded-tl-sm rounded-br-sm rounded-tr-4xl hover:scale-105"
                   >
                     Clear Filters
                   </button>

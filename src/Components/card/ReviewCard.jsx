@@ -42,7 +42,7 @@ const ReviewCard = ({
   }, []);
 
   return (
-    <div className="relative w-full  bg-base-100 rounded-box shadow-sm hover:shadow-lg p-6 pt-12 mt-16 text-center group cursor-pointer transform transition-all duration-300 hover:-translate-y-3 ease-in-out clip-path-[polygon(0_35%,100%_0,100%_100%,0_100%)]">
+    <div className="relative w-full  bg-base-100 rounded-box shadow-sm hover:shadow-lg p-6 pt-12 mt-16 text-center group cursor-pointer transform transition-all duration-300 hover:-translate-y-3 ease-in-out">
       {/* Large Screen View */}
       <div className="hidden md:block absolute -top-16 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full border-[6px] border-base-200 shadow-lg overflow-hidden bg-base-100">
         <img

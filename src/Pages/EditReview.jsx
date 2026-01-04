@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import api from "../Utility/axios";
 import toast from "react-hot-toast";
 import { parseTags } from "../Utility/helper";
+import CustomRatingSelect from "../Components/CustomRatingSelect";
 
 const EditReview = () => {
   const location = useLocation();
@@ -63,10 +64,10 @@ const EditReview = () => {
             state={{ from: location, review: reviewData }}
             className="font-medium text-xl flex items-center gap-2 mb-4"
           >
-            <ArrowLeft /> Back to My Reviews
+            <ArrowLeft className="text-primary"/> Back to My Reviews
           </Link>
-          <h2 className="text-5xl font-bold mb-4">Edit Review</h2>
-          <p className="text-accent mb-8">Update your food review</p>
+          <h2 className="text-3xl font-bold mb-2">Edit Review</h2>
+          <p className="text-neutral mb-8">Update your food review</p>
         </div>
         <form
           onSubmit={handleSubmit}
@@ -83,7 +84,7 @@ const EditReview = () => {
                 value={formData.foodName}
                 type="text"
                 placeholder="Product Name"
-                className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 "
+                className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
               />
             </div>
             <div className="flex flex-col">
@@ -96,7 +97,7 @@ const EditReview = () => {
                 value={formData.restaurantName}
                 type="text"
                 placeholder="Product Name"
-                className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 "
+                className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
               />
             </div>
           </div>
@@ -111,7 +112,7 @@ const EditReview = () => {
                 value={formData.location}
                 type="text"
                 placeholder="e.g. 18.5"
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 "
+                className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
               />
             </div>
           </div>
@@ -125,30 +126,19 @@ const EditReview = () => {
               value={formData.image}
               type="text"
               placeholder="https://...Image URL"
-              className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 "
+              className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
             />
           </div>
           <div className="grid grid-cols-1">
             <label className="label mb-2">
               <span className="label-text">Rating</span>
             </label>
-            <select
-              id="rating"
-              name="rating"
+            <CustomRatingSelect
               value={formData.rating}
-              onChange={handleChange}
-              className="select select-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 "
-            >
-              <option value={5}>5 Stars - Excellent</option>
-              <option value={4.5}>4.5 Stars</option>
-              <option value={4}>4 Stars - Very Good</option>
-              <option value={3.5}>3.5 Stars</option>
-              <option value={3}>3 Stars - Good</option>
-              <option value={2.5}>2.5 Stars</option>
-              <option value={2}>2 Stars - Fair</option>
-              <option value={1.5}>1.5 Stars</option>
-              <option value={1}>1 Star - Poor</option>
-            </select>
+              onChange={(val) =>
+                setFormData((prev) => ({ ...prev, rating: val }))
+              }
+            />
           </div>
 
           <div className="grid grid-cols-1">
@@ -160,7 +150,7 @@ const EditReview = () => {
               onChange={handleChange}
               value={formData.reviewText}
               rows={6}
-              className="textarea textarea-bordered w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 "
+              className="textarea w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
               placeholder="e.g. I bought this product 3 month ago. did not used more than 1/2 time. actually learning guitar is so tough..... "
             ></textarea>
           </div>
@@ -174,7 +164,7 @@ const EditReview = () => {
               value={formData.tags}
               type="text"
               placeholder="e.g. spicy, vegan, dessert"
-              className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 "
+              className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
             />
           </div>
           <div className="flex gap-4 w-full justify-end mt-6">
@@ -182,7 +172,7 @@ const EditReview = () => {
             <Link
               to={from}
               state={{ from: location, review: reviewData }}
-              className="btn btn-outline border-gray-300 flex-1"
+              className="btn btn-outline border-base-300 flex-1"
             >
               Cancel
             </Link>
