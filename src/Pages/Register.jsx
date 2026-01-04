@@ -70,12 +70,12 @@ const Register = () => {
 
   return (
     <Container>
-      <div className="card bg-base-100 w-full max-w-md shadow-2xl p-4 mx-auto">
+      <div className="card bg-base-100 border border-base-300 w-full max-w-md shadow-sm p-4 mx-auto">
         <div className="text-center">
           <h2 className="text-2xl font-bold mt-6 mb-3">Register Now!</h2>
-          <span>
+          <span className="text-neutral">
             Already have an account?{" "}
-            <NavLink to="/auth/login" className="text-gradient">
+            <NavLink to="/auth/login" className="font-semibold hover:text-primary">
               Login Now
             </NavLink>
           </span>
@@ -89,7 +89,7 @@ const Register = () => {
               <input
                 type="text"
                 name="username"
-                className="input w-full bg-base-200"
+                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
                 placeholder="Your Name"
                 onChange={handleChange}
                 value={form.username}
@@ -103,7 +103,7 @@ const Register = () => {
               <input
                 type="text"
                 name="photoURL"
-                className="input w-full bg-base-200"
+                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
                 placeholder="Image URL..."
                 onChange={handleChange}
                 value={form.photoURL}
@@ -116,7 +116,7 @@ const Register = () => {
               <input
                 type="email"
                 name="email"
-                className="input w-full bg-base-200"
+                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
                 placeholder="Enter your email"
                 onChange={handleChange}
                 value={form.email}
@@ -130,7 +130,7 @@ const Register = () => {
               <input
                 type={show.password ? "text" : "password"}
                 name="password"
-                className="input w-full bg-base-200"
+                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
                 placeholder="Enter your password"
                 onChange={handleChange}
                 value={form.password}
@@ -138,7 +138,7 @@ const Register = () => {
               />
               <button
                 type="button"
-                className="absolute right-3 top-9"
+                className="absolute text-neutral/80 hover:text-neutral z-1 right-3 top-9"
                 onClick={() => setShow({ ...show, password: !show.password })}
               >
                 {show.password ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -151,7 +151,7 @@ const Register = () => {
               <input
                 type={show.confirm ? "text" : "password"}
                 name="confirmPassword"
-                className="input w-full bg-base-200"
+                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
                 placeholder="Confirm your password"
                 onChange={handleChange}
                 value={form.confirmPassword}
@@ -159,7 +159,7 @@ const Register = () => {
               />
               <button
                 type="button"
-                className="absolute right-3 top-9"
+                className="absolute text-neutral/80 hover:text-neutral z-1 right-3 top-9"
                 onClick={() => setShow({ ...show, confirm: !show.confirm })}
               >
                 {show.confirm ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -170,9 +170,9 @@ const Register = () => {
           </fieldset>
 
           <div className="flex items-center gap-2 mt-4">
-            <span className="w-[45%] h-px bg-gray-200"></span>
-            <span className="font-semibold">OR</span>
-            <span className="w-[45%] h-px bg-gray-200"></span>
+            <span className="w-[45%] h-px bg-base-300"></span>
+            <span className="font-semibold text-neutral">OR</span>
+            <span className="w-[45%] h-px bg-base-300"></span>
           </div>
 
           <button onClick={handleGoogleSignIn} className="btn mt-4">

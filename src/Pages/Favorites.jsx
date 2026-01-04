@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Container from "../Utility/Container";
-import ReviewCard from "../Components/ReviewCard";
 import { Heart } from "lucide-react";
 import { Link } from "react-router";
 import api from "../Utility/axios";
 import Loading from "../Utility/Loading";
+import ReviewCard from "../Components/card/ReviewCard";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -31,8 +31,8 @@ const Favorites = () => {
     <Container>
       <div className="my-20">
         <div className="">
-          <h2 className="text-5xl font-bold mb-4">My Favorites</h2>
-          <p className="text-accent mb-8 animate-bounce">
+          <h2 className="text-3xl font-bold mb-4">My Favorites</h2>
+          <p className="text-neutral mb-8 animate-bounce">
             Your collection of loved food reviews
           </p>
         </div>

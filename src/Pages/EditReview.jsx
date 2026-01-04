@@ -57,8 +57,8 @@ const EditReview = () => {
 
   return (
     <Container>
-      <div className="my-20">
-        <div className="max-w-3xl mx-auto">
+      <div className="my-10">
+        <div className="max-w-3xl mx-auto px-4 md:px-0">
           <Link
             to={from}
             state={{ from: location, review: reviewData }}
@@ -71,7 +71,7 @@ const EditReview = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="max-w-3xl mx-auto mt-10 bg-base-100 gap-7 p-8 rounded-lg shadow-xl flex flex-col"
+          className="max-w-3xl mx-auto my-10 bg-base-100 gap-7 p-4 md:p-8 rounded-lg shadow-sm flex flex-col"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>

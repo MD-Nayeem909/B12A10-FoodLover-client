@@ -40,8 +40,8 @@ const MyReviews = () => {
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-12 flex-1">
         <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">My Reviews</h1>
-            <p className="text-accent animate-bounce">
+            <h1 className="text-3xl font-bold mb-2">My Reviews</h1>
+            <p className="text-neutral animate-bounce">
               Manage all your food reviews in one place
             </p>
           </div>
@@ -49,7 +49,7 @@ const MyReviews = () => {
             {reviews.length > 0 && (
               <Link
                 to="/create-review"
-                className="flex items-center gap-2 btn-primary rounded-md px-4 py-2"
+                className="flex items-center gap-2 btn btn-primary rounded-md px-4 py-2"
               >
                 <Plus size={20} />
                 Add Review
@@ -62,10 +62,10 @@ const MyReviews = () => {
           <Loading />
         ) : reviews.length === 0 ? (
           <div className="card p-12 flex-col items-center text-center">
-            <h2 className="text-2xl font-bold mb-2 text-text-primary">
+            <h2 className="text-2xl font-bold mb-2 text-primary">
               No reviews yet
             </h2>
-            <p className="text-text-secondary mb-6">
+            <p className="text-neutral mb-6">
               Start sharing your food experiences with the community
             </p>
             <Link

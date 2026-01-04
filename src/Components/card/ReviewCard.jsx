@@ -1,10 +1,9 @@
-import { Star, Heart, ArrowRight, MapPin } from "lucide-react";
+import { Heart, ArrowRight, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import api from "../../Utility/axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../../Providers/AuthContext";
-import Button from "../button/Button";
 
 const ReviewCard = ({
   review,

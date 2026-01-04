@@ -64,12 +64,12 @@ const Login = () => {
 
   return (
     <Container>
-      <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl mx-auto p-4">
+      <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-sm border-base-300 border mx-auto p-4">
         <div className="text-center">
           <h2 className="text-2xl font-bold mt-6 mb-3">Login</h2>
-          <span>
+          <span className="text-neutral">
             Don't have an account?{" "}
-            <NavLink to="/auth/register" className="text-gradient">
+            <NavLink to="/auth/register" className="text-neutral font-semibold hover:text-primary">
               Register Now
             </NavLink>
           </span>
@@ -82,7 +82,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 type="email"
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 bg-base-200"
+                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
                 placeholder="Email"
               />
             </div>
@@ -92,12 +92,12 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 type={showPassword ? "text" : "password"}
-                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-gray-300 bg-base-200"
+                className="input w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40 border-base-300 bg-base-200"
                 placeholder="Enter your password"
               />
               <button
                 type="button"
-                className="absolute right-3 top-7 text-gray-500 hover:text-gray-700 z-1"
+                className="absolute right-3 top-7 text-neutral/80 hover:text-neutral z-1"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -107,19 +107,19 @@ const Login = () => {
             <div className="flex justify-between">
               <div className="flex items-center gap-2">
                 <input type="checkbox" />
-                <span>Remember me</span>
+                <span className="text-neutral">Remember me</span>
               </div>
 
               <div>
-                <Link className="link link-hover">Forgot password?</Link>
+                <Link className="link link-hover text-neutral">Forgot password?</Link>
               </div>
             </div>
             <button className="btn btn-primary mt-4">Sign In</button>
           </fieldset>
           <div className="flex items-center gap-2 mt-4">
-            <span className="w-[45%] h-px bg-gray-200"></span>
-            <span className="font-semibold">OR</span>
-            <span className="w-[45%] h-px bg-gray-200"></span>
+            <span className="w-[45%] h-px bg-base-300"></span>
+            <span className="font-semibold text-neutral">OR</span>
+            <span className="w-[45%] h-px bg-base-300"></span>
           </div>
           <button onClick={handleGoogleSignIn} className="btn mt-4">
             <FcGoogle size={25} />

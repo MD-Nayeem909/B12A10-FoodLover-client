@@ -56,7 +56,7 @@ const CreateReview = () => {
             to="/"
             className="font-medium text-xl flex items-center gap-2 mb-4"
           >
-            <ArrowLeft /> Back to Reviews
+            <ArrowLeft className="text-primary" /> Back to Reviews
           </Link>
           <h2 className="text-3xl font-bold mb-2">
             Share Your Food Experience

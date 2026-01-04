@@ -5,6 +5,7 @@ import { useTheme } from "../../Providers/ThemeProvider";
 import { useAuth } from "../../Providers/AuthContext";
 import Logo from "../logo/Logo";
 import { useState } from "react";
+import ProfileDropdown from "../profileDropdown/ProfileDropdown";
 
 const Navbar = () => {
   const { user, setUser, logoutUser, loading } = useAuth();
@@ -117,7 +118,7 @@ const Navbar = () => {
 
                 {/* sun icon */}
                 <svg
-                  className="swap-off h-7 w-7 fill-current"
+                  className="swap-off h-6 w-6 fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
@@ -126,7 +127,7 @@ const Navbar = () => {
 
                 {/* moon icon */}
                 <svg
-                  className="swap-on h-7 w-7 fill-current"
+                  className="swap-on h-6 w-6 fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
@@ -135,45 +136,12 @@ const Navbar = () => {
               </label>
             </div>
             {!loading && user ? (
-              <div className="flex items-center gap-5 dropdown-end">
-                <div className="dropdown dropdown-end">
-                  <div tabIndex={0} className=" m-1">
-                    <Link
-                      to="/profile"
-                      className="tooltip tooltip-left"
-                      data-tip={user?.displayName || user.username || "Profile"}
-                    >
-                      <div className="avatar">
-                        <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                          <img src={user.photoURL || user.photoUrl} />
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
-                  >
-                    <li>
-                      <NavLink to="/my-reviews">My Reviews</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/create-review">Add Review</NavLink>
-                    </li>
-                    <li
-                      className="hover:bg-red-100 hover:text-red-600"
-                      onClick={handleLogout}
-                    >
-                      <a>LogOut</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <ProfileDropdown user={user} handleLogout={handleLogout} />
             ) : (
               <div className="md:flex items-center hidden font-semibold space-x-2">
                 <NavLink
                   to="/auth/login"
-                  className="btn btn-soft btn-secondary text-xs lg:text-sm font-medium transition-all duration-300 shadow-none ease-in-out overflow-hidden"
+                  className="btn btn-soft hover:scale-105 text-xs lg:text-sm font-medium transition-all duration-300 shadow-none ease-in-out overflow-hidden"
                 >
                   Login
                 </NavLink>
