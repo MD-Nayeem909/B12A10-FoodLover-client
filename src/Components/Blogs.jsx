@@ -15,7 +15,7 @@ const Blogs = () => {
   ];
 
   return (
-    <section className="">
+    <section id="blog" className="">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl font-semibold text-center mb-10 text-primary">
           From Our Blog

@@ -3,7 +3,6 @@ import Logo from "./logo/Logo";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
-
 const Footer = () => {
   return (
     <footer className=" bg-base-100 py-12 px-4 border-t border-base-300">
@@ -69,7 +68,7 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="/blog"
+                  href="#blog"
                   className="text-neutral hover:text-secondary transition-colors duration-300"
                 >
                   Blog
@@ -90,7 +89,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#faqs"
                   className="text-neutral hover:text-secondary transition-colors duration-300"
                 >
                   FAQs
@@ -106,29 +105,19 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#newsletter"
                   className="text-neutral hover:text-secondary transition-colors duration-300"
                 >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-neutral hover:text-secondary transition-colors duration-300"
-                >
-                  Terms of Service
+                  Newsletter
                 </a>
               </li>
             </ul>
           </div>
           <div className="space-y-4">
             <h3 className="text-xl font-bold">Contact Us</h3>
-            <p className="text-neutral">
-              123 Tech Avenue, Innovation City, 98765
-            </p>
-            <p className="text-neutral">Email: info@yourbrand.com</p>
-            <p className="text-neutral">Phone: +1 (555) 123-4567</p>
+            <p className="text-neutral">Chittagong, Bangladesh.</p>
+            <p className="text-neutral">Email: mdnayeemuddin909.com</p>
+            <p className="text-neutral">Phone: +880 1518 966 045</p>
           </div>
         </div>
       </div>

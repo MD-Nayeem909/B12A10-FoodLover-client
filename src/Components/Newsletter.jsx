@@ -16,7 +16,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-20 bg-base-100 text-center rounded-2xl">
+    <section id="newsletter" className="py-20 bg-base-100 text-center rounded-2xl">
       <div className="max-w-2xl mx-auto px-4 text-center">
         <h2 className="text-3xl text-primary font-semibold mb-4">
           Stay Updated With Local Food Trends
