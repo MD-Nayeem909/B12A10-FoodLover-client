@@ -1,11 +1,12 @@
 import { Link, NavLink } from "react-router";
 import Container from "../../Utility/Container";
-import { Heart, LogIn, UserRoundPlus, Menu, X } from "lucide-react";
+import { Heart, LogIn, UserRoundPlus, Menu, X, Info, MessageSquare } from "lucide-react";
 import { useTheme } from "../../Providers/ThemeProvider";
 import { useAuth } from "../../Providers/AuthContext";
 import Logo from "../logo/Logo";
 import { useState } from "react";
 import ProfileDropdown from "../profileDropdown/ProfileDropdown";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const { user, setUser, logoutUser, loading } = useAuth();
@@ -20,7 +21,10 @@ const Navbar = () => {
   };
 
   const NavItem = ({ to, icon, text, className = "", onClick }) => (
-    <li>
+    <motion.li
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
       <NavLink
         to={to}
         onClick={onClick}
@@ -28,12 +32,10 @@ const Navbar = () => {
           `
         relative flex items-center gap-2
         text-sm font-medium transition-colors
-        after:absolute after:-bottom-0.5 after:left-0 after:h-0.5
-        after:bg-secondary after:transition-all after:duration-300
         ${
           isActive
-            ? "text-secondary lg:after:w-full"
-            : "after:w-0 hover:text-secondary lg:hover:after:w-full"
+            ? "text-secondary font-bold"
+            : "hover:text-secondary"
         }
         ${className}
         `
@@ -42,7 +44,7 @@ const Navbar = () => {
         {icon && icon}
         {text}
       </NavLink>
-    </li>
+    </motion.li>
   );
 
   const navLinks = [
@@ -57,15 +59,28 @@ const Navbar = () => {
     {
       to: "/my-reviews",
       text: "My Reviews",
+      private: true,
     },
     {
       to: "/create-review",
       text: "Create Review",
+      private: true,
     },
     {
       to: "/favorites",
       text: "Favorites",
-      icon: <Heart size={18} className="text-accent" />,
+      icon: <Heart size={18} className="text-secondary" />,
+      private: true,
+    },
+    {
+      to: "/about-us",
+      text: "About",
+      icon: <Info size={18} className="text-secondary" />,
+    },
+    {
+      to: "/contact-us",
+      text: "Contact",
+      icon: <MessageSquare size={18} className="text-secondary" />,
     },
   ];
 
@@ -73,33 +88,40 @@ const Navbar = () => {
     {
       to: "/auth/login",
       text: "Login",
-      icon: <LogIn size={18} className="text-accent" />,
+      icon: <LogIn size={18} className="text-secondary" />,
     },
     {
       to: "/auth/register",
       text: "Register",
-      icon: <UserRoundPlus size={18} className="text-accent" />,
+      icon: <UserRoundPlus size={18} className="text-secondary" />,
     },
   ];
 
+  const visibleNavLinks = navLinks.filter(link => !link.private || user);
+
   return (
-    <div className="bg-base-100 shadow-sm">
+    <motion.div
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="bg-base-100/70 backdrop-blur-md sticky top-0 z-50 border-b border-base-200/50 shadow-sm"
+    >
       <Container>
-        <div className="navbar">
+        <div className="navbar py-3">
           <div className="navbar-start">
             <button
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="lg:hidden p-2 rounded-md transition-colors hover:bg-base-100"
+              className="lg:hidden p-2 rounded-md transition-colors hover:bg-base-200"
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              {isMenuOpen ? <X size={22} className="text-secondary" /> : <Menu size={22} className="text-secondary" />}
             </button>
 
             <Logo />
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="flex items-center gap-4">
-              {navLinks.map((link) => (
+            <ul className="flex items-center gap-6">
+              {visibleNavLinks.map((link) => (
                 <NavItem key={link.to} {...link} />
               ))}
             </ul>
@@ -107,8 +129,7 @@ const Navbar = () => {
 
           <div className="navbar-end">
             <div className="mr-4">
-              <label className="swap swap-rotate">
-                {/* this hidden checkbox controls the state */}
+              <label className="swap swap-rotate hover:scale-110 transition-transform">
                 <input
                   type="checkbox"
                   onChange={toggleTheme}
@@ -118,7 +139,7 @@ const Navbar = () => {
 
                 {/* sun icon */}
                 <svg
-                  className="swap-off h-6 w-6 fill-current"
+                  className="swap-off h-6 w-6 fill-current text-amber-500"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
@@ -127,7 +148,7 @@ const Navbar = () => {
 
                 {/* moon icon */}
                 <svg
-                  className="swap-on h-6 w-6 fill-current"
+                  className="swap-on h-6 w-6 fill-current text-indigo-400"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
@@ -138,59 +159,72 @@ const Navbar = () => {
             {!loading && user ? (
               <ProfileDropdown user={user} handleLogout={handleLogout} />
             ) : (
-              <div className="md:flex items-center hidden font-semibold space-x-2">
-                <NavLink
-                  to="/auth/login"
-                  className="btn btn-soft hover:scale-105 text-xs lg:text-sm font-medium transition-all duration-300 shadow-none ease-in-out overflow-hidden"
-                >
-                  Login
-                </NavLink>
-
-                <NavLink
-                  to="/auth/register"
-                  className="btn btn-primary hover:scale-105 text-xs lg:text-sm font-medium transition-all duration-300 shadow-none ease-in-out overflow-hidden"
-                >
-                  Register
-                </NavLink>
+              <div className="md:flex items-center hidden font-semibold space-x-3">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <NavLink
+                    to="/auth/login"
+                    className="btn btn-ghost rounded-full px-6 hover:bg-base-200 text-sm font-medium transition-all duration-300"
+                  >
+                    Login
+                  </NavLink>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <NavLink
+                    to="/auth/register"
+                    className="btn btn-primary rounded-full px-6 shadow-md shadow-primary/30 text-sm font-medium transition-all duration-300 border-none"
+                  >
+                    Register
+                  </NavLink>
+                </motion.div>
               </div>
             )}
           </div>
         </div>
-        {/* Mobile Menu */}
-        <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="border-t border-base-300 py-4">
-            <ul className="flex flex-col space-y-1">
-              {navLinks.map((link) => (
-                <NavItem
-                  key={link.to}
-                  {...link}
-                  className="px-3 py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                />
-              ))}
 
-              {!user && (
-                <>
-                  <div className="divider my-2" />
-                  {authLinks.map((link) => (
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="lg:hidden overflow-hidden"
+            >
+              <div className="border-t border-base-200/50 py-4 pb-6 mt-2">
+                <ul className="flex flex-col space-y-2">
+                  {visibleNavLinks.map((link) => (
                     <NavItem
                       key={link.to}
                       {...link}
-                      className="px-3 py-2"
+                      className="px-4 py-2.5 rounded-lg hover:bg-base-200/50"
                       onClick={() => setIsMenuOpen(false)}
                     />
                   ))}
-                </>
-              )}
-            </ul>
-          </div>
-        </div>
+
+                  {!user && (
+                    <motion.div 
+                      initial={{ opacity: 0 }} 
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="pt-4 mt-2 border-t border-base-200/50"
+                    >
+                      {authLinks.map((link) => (
+                        <NavItem
+                          key={link.to}
+                          {...link}
+                          className="px-4 py-2.5 rounded-lg hover:bg-base-200/50 text-secondary"
+                          onClick={() => setIsMenuOpen(false)}
+                        />
+                      ))}
+                    </motion.div>
+                  )}
+                </ul>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Container>
-    </div>
+    </motion.div>
   );
 };
 
