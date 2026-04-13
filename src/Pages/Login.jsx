@@ -114,7 +114,19 @@ const Login = () => {
                 <Link className="link link-hover text-neutral">Forgot password?</Link>
               </div>
             </div>
-            <button className="btn btn-primary mt-4">Sign In</button>
+            <div className="flex gap-2 mt-4">
+              <button type="submit" className="btn btn-primary flex-1">Sign In</button>
+              <button 
+                type="button" 
+                onClick={() => {
+                  setEmail("demo@user.com");
+                  setPassword("Demo123");
+                }} 
+                className="btn btn-outline border-base-300"
+              >
+                Demo Fill
+              </button>
+            </div>
           </fieldset>
           <div className="flex items-center gap-2 mt-4">
             <span className="w-[45%] h-px bg-base-300"></span>
